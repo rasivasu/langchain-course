@@ -4,6 +4,15 @@
 
 In this section we build the **same shopping assistant agent** three different ways. Each time we remove a layer of abstraction, so you can see exactly what's happening underneath.
 
+## 📁 Project Structure
+
+```text
+03-agents-under-the-hood/
+├── 1_agent_loop_langchain_tool_calling.py  # Level 1: High-level LangChain
+├── 2_agent_loop_raw_function_calling.py    # Level 2: Raw Ollama SDK (JSON schemas)
+└── 3_raw_react_prompt.py                   # Level 3: Pure Prompt Engineering (ReAct)
+```
+
 ## The Big Idea
 
 Every AI agent — whether built with LangChain, LlamaIndex, CrewAI, or from scratch — follows the same core loop. We build it three times, each time peeling off a layer:
