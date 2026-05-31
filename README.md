@@ -1,6 +1,6 @@
 # 🦜 LangChain Course: From Zero to Agent Hero
 
-A comprehensive collection of tutorials and projects covering the LangChain ecosystem, from basic LLM integration to advanced agentic patterns using LangGraph.
+A collection of projects covering the LangChain ecosystem, from basic LLM integration to advanced agentic patterns using LangGraph.
 
 ## 📁 Repository Structure
 
