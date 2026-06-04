@@ -2,6 +2,12 @@
 
 An implementation of the Reflection pattern where an agent generates content and then critiques itself to improve the output.
 
+## 📚 Foundational Research
+
+The iterative self-correction pattern used here is based on research into self-feedback loops in LLMs:
+
+- **Self-Refine:** [Self-Refine: Iterative Refinement with Self-Feedback](https://arxiv.org/abs/2303.17651) (Madaan et al., 2023). This paper demonstrates that models can significantly improve their own outputs by generating a draft, critiquing it, and then refining it based on that feedback. (See `docs/self_refine_paper.pdf`)
+
 ## Overview
 
 This agent follows a cyclic graph:

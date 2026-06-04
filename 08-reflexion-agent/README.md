@@ -8,7 +8,7 @@ This project is inspired by and based on the following resources:
 
 ## 📚 Foundational Research
 The architecture of this project is based on the following key research paper:
-- **Reflexion:** [Reflexion: Language Agents with Verbal Reinforcement Learning](https://arxiv.org/abs/2303.11366) - Introduces the concept of "verbal" reinforcement learning, where agents learn through self-reflection and linguistic feedback rather than traditional weight updates. (See `docs/2303.11366v4.pdf`)
+- **Reflexion:** [Reflexion: Language Agents with Verbal Reinforcement Learning](https://arxiv.org/abs/2303.11366) - Introduces the concept of "verbal" reinforcement learning, where agents learn through self-reflection and linguistic feedback rather than traditional weight updates. (See `docs/reflexion_paper.pdf`)
 
 ## 🏗️ Architecture
 The system is built as a stateful graph using **LangGraph**. The workflow ensures that the agent iteratively improves its response through self-critique and external research.
