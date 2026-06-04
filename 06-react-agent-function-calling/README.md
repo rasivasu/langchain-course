@@ -11,6 +11,12 @@ This project demonstrates:
 - Integrating `TavilySearch` for real-time web access.
 - Implementing custom tools (e.g., a simple `triple` math tool).
 
+## Architecture
+
+The application follows the **ReAct** (Reason + Act) framework, where the model interleaves reasoning traces and task-specific actions. This allows for more robust and transparent problem-solving.
+
+For more details, see the original research paper in the `docs/` folder: [ReAct: Synergizing Reasoning and Acting in Language Models](docs/react_paper.pdf).
+
 ## Components
 
 - **`react.py`**: Defines the LLM and the tools.
