@@ -8,6 +8,7 @@ In this section we build the **same shopping assistant agent** three different w
 
 ```text
 03-agents-under-the-hood/
+├── docs/                                   # Foundational research papers
 ├── 1_agent_loop_langchain_tool_calling.py  # Level 1: High-level LangChain
 ├── 2_agent_loop_raw_function_calling.py    # Level 2: Raw Ollama SDK (JSON schemas)
 └── 3_raw_react_prompt.py                   # Level 3: Pure Prompt Engineering (ReAct)
@@ -20,6 +21,13 @@ Every AI agent — whether built with LangChain, LlamaIndex, CrewAI, or from scr
 1. **Start with LangChain** — this is how you'd normally build an agent. `@tool`, `bind_tools()`, `init_chat_model()`. It just works. But what's actually happening underneath?
 2. **Peel off LangChain** — build the same agent from scratch using only the Ollama SDK. Now you see what LangChain was doing for you: hand-written JSON schemas, manual message routing, raw tool dispatch.
 3. **Peel off function calling** — go even deeper. Modern LLMs have built-in function calling, but that's a recent feature (June 2023). Before that, agents worked through pure prompt engineering: the **ReAct pattern**. We strip away function calling entirely and build it with just a prompt template and regex.
+
+## 📚 Foundational Research
+
+The architecture and prompting strategies used in this project are grounded in two seminal research papers:
+
+- **Chain-of-Thought (CoT):** [Chain-of-Thought Prompting Elicits Reasoning in Large Language Models](https://arxiv.org/abs/2201.11903) (Wei et al., 2022). This paper demonstrated that LLMs perform significantly better on complex tasks when prompted to generate a series of intermediate reasoning steps before providing a final answer. (See `docs/chain_of_thought_paper.pdf`)
+- **ReAct:** [ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629) (Yao et al., 2022). Building on CoT, ReAct introduced a framework where models interleave reasoning traces ("Thoughts") with task-specific actions ("Actions"), allowing the agent to interact with external tools and observe results before continuing its reasoning.
 
 ```
 ┌─────────────────────────────────────────────┐

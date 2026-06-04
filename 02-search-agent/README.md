@@ -2,6 +2,12 @@
 
 This tutorial demonstrates how to build search agents using LangChain's `create_agent` interface. The project progresses through three key concepts, showing how to evolve from a basic custom tool implementation to using structured outputs with built-in LangChain integrations.
 
+## 📚 Foundational Research
+
+The development of tool-using agents is supported by research into how language models can autonomously decide when and how to use external APIs:
+
+- **Toolformer:** [Toolformer: Language Models Can Teach Themselves to Use Tools](https://arxiv.org/abs/2302.04761) (Schick et al., 2023). This paper explores how LLMs can be trained to call external tools in a self-supervised manner, providing the theoretical basis for modern agentic tool-use. (See `docs/toolformer_paper.pdf`)
+
 ## Learning Objectives
 
 - Understand the LangChain `create_agent` interface
