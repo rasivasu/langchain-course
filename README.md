@@ -8,50 +8,48 @@ Each directory in this repository represents a specific module or project in the
 
 | Module | Project Name | Description | Key Technologies |
 |:---|:---|:---|:---|
-| **01** | [**Hello World**](./01-hello-world) | Basic setup and first LLM call. | OpenAI, PromptTemplates |
-| **02** | [**Search Agent**](./02-search-agent) | Building agents that use web search tools. | Tavily, create_agent |
-| **03** | [**Agents Under the Hood**](./03-agents-under-the-hood) | Deep dive into agent loops and ReAct prompts. | Ollama, Regex, Raw Loops |
-| **04** | [**RAG Gist**](./04-rag-gist) | Introduction to Retrieval Augmented Generation. | Pinecone, LCEL |
-| **05** | [**Doc Helper**](./05-documentation-helper) | A full-stack RAG application for documentation. | Streamlit, Pinecone, Tavily |
-| **06** | [**ReAct Agent**](./06-react-agent-function-calling) | ReAct pattern with LangGraph and tool calling. | LangGraph, ToolNode |
-| **07** | [**Reflection Agent**](./07-reflection-agent) | Self-correcting agents that iterate on output. | LangGraph, Reflection |
-| **08** | [**Reflexion Agent**](./08-reflexion-agent) | Advanced Actor-Critic model with tool research. | LangGraph, Advanced RAG |
+| **01** | [**Hello World**](./01-hello-world) | Basic setup, instructions following, and first LLM call. | OpenAI, Few-Shot |
+| **02** | [**Search Agent**](./02-search-agent) | Building agents that autonomously use web search tools. | Tavily, Tool-use |
+| **03** | [**Agents Under the Hood**](./03-agents-under-the-hood) | Deep dive into agent loops, ReAct prompts, and regex parsing. | Ollama, CoT, ReAct |
+| **04** | [**RAG Gist**](./04-rag-gist) | Foundational Retrieval Augmented Generation with vector stores. | Pinecone, LCEL |
+| **05** | [**Doc Helper**](./05-documentation-helper) | A full-stack RAG application for intelligent documentation search. | Streamlit, Tavily |
+| **06** | [**ReAct Agent**](./06-react-agent-function-calling) | ReAct pattern implemented using LangGraph and ToolNode. | LangGraph, ToolNode |
+| **07** | [**Reflection Agent**](./07-reflection-agent) | Self-correcting agents that iterate and critique their output. | Self-Correction |
+| **08** | [**Reflexion Agent**](./08-reflexion-agent) | Advanced Actor-Critic model with tool-assisted self-reflection. | Actor-Critic |
+| **09** | [**Agentic RAG**](./09-agentic-rag) | The pinnacle: CRAG and Self-RAG for self-correcting retrieval. | CRAG, Self-RAG |
+
+## 📚 Research Library
+
+This repository links practical implementations to foundational AI research. Each module contains a `docs/` folder with the relevant seminal papers:
+
+*   **Prompting**: [Few-Shot Learning (GPT-3)](./01-hello-world/docs/gpt3_few_shot_paper.pdf), [Chain-of-Thought](./03-agents-under-the-hood/docs/chain_of_thought_paper.pdf).
+*   **Agent Architecture**: [ReAct](./06-react-agent-function-calling/docs/react_paper.pdf), [Toolformer](./02-search-agent/docs/toolformer_paper.pdf), [Reflexion](./08-reflexion-agent/docs/reflexion_paper.pdf).
+*   **RAG Evolution**: [Original RAG Paper](./04-rag-gist/docs/original_rag_paper.pdf), [Corrective RAG (CRAG)](./09-agentic-rag/docs/Corrective-RAG_CRAG.pdf), [Self-RAG](./09-agentic-rag/docs/Self-RAG_Self-Reflection.pdf).
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
 - **Python 3.11+**
-- **[uv](https://github.com/astral-sh/uv)** (recommended for dependency management)
+- **[uv](https://github.com/astral-sh/uv)** (highly recommended for lightning-fast dependency management)
 - API Keys for **OpenAI**, **Tavily**, and **Pinecone**.
 
-### Installation
+### Installation & Execution
 
-Clone the repository and install dependencies in the respective project directories:
+Each module is an independent project. Navigate to a directory and use `uv` to sync and run:
 
 ```bash
-# Example for a specific module
-cd 06-react-agent-function-calling
+cd 09-agentic-rag
 uv sync
-```
-
-### Environment Setup
-
-Most projects require a `.env` file in their respective root folder:
-
-```env
-OPENAI_API_KEY=sk-...
-TAVILY_API_KEY=tvly-...
-PINECONE_API_KEY=...
-INDEX_NAME=...
+python main.py
 ```
 
 ## 🧠 Learning Path
 
-1. **Foundations**: Start with `01` and `04` to understand basic LLM calls and RAG.
-2. **Agents Basics**: Move to `02` and `03` to see how agents work at a high and low level.
-3. **Advanced Agents**: Explore `06`, `07`, and `08` to master LangGraph and complex agentic architectures.
-4. **Full Stack**: Check out `05` for a real-world application example.
+1.  **Foundations**: Start with `01` and `04` to master basic LLM calls and the core RAG pattern.
+2.  **Mechanics**: Move to `02` and `03` to understand how agents use tools at both a high and low level.
+3.  **The LangGraph Shift**: Explore `06` and `07` to transition from linear chains to stateful, cyclic graphs.
+4.  **Advanced Reasoning**: Master `08` (Actor-Critic) and `09` (Agentic RAG) to build production-grade self-correcting systems.
 
 ## 🛠️ Tools Used
 
