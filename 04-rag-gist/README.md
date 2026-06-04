@@ -2,6 +2,12 @@
 
 A step-by-step tutorial demonstrating how to build a Retrieval Augmented Generation (RAG) system using LangChain, OpenAI, and Pinecone.
 
+## 📚 Foundational Research
+
+Retrieval-Augmented Generation is a technique that combines the strength of pre-trained language models with external knowledge retrieval:
+
+- **RAG:** [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401) (Lewis et al., 2020). This is the original paper that introduced the RAG framework, demonstrating how to combine a retriever and a generator for more factual and grounded LLM outputs. (See `docs/original_rag_paper.pdf`)
+
 ## Overview
 
 This tutorial progressively builds a complete RAG pipeline:

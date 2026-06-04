@@ -10,18 +10,13 @@
   <img src="static/Tavily Logo Trimmed Padded.png" alt="Tavily Logo" width="180" style="margin: 0 10px;">
 </p>
 
-<br>
-
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![LangChain](https://img.shields.io/badge/LangChain-🦜🔗-green.svg)](https://langchain.com/)
-[![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B.svg)](https://streamlit.io/)
-[![Pinecone](https://img.shields.io/badge/Pinecone-🌲-orange.svg)](https://pinecone.io/)
-[![Tavily](https://img.shields.io/badge/Tavily-🔍-purple.svg)](https://app.tavily.com/home?utm_campaign=eden_marco&utm_medium=socials&utm_source=linkedin)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-
-[![udemy](https://img.shields.io/badge/LangChain%20Udemy%20Course-%2412.99-green)](https://www.udemy.com/course/langchain/?couponCode=APRIL-2026)
-
 </div>
+
+## 📚 Foundational Research
+
+This project builds upon the foundational concept of Retrieval-Augmented Generation (RAG):
+
+- **RAG:** [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401) (Lewis et al., 2020). Introduced the architecture for integrating external document retrieval into the LLM generation process, which is the core of this documentation assistant. (See `docs/original_rag_paper.pdf`)
 
 ## 🎯 Overview
 
