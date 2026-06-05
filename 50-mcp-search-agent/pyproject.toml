@@ -1,0 +1,14 @@
+[project]
+name = "mcp-search-agent"
+version = "0.1.0"
+description = "A search agent built with Model Context Protocol (MCP) architecture"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastmcp>=0.4.1",
+    "langchain>=1.3.2",
+    "langchain-openai>=1.2.2",
+    "python-dotenv>=1.2.2",
+    "tavily-python>=0.7.25",
+    "mcp>=1.2.1",
+]

@@ -17,13 +17,14 @@ Each directory in this repository represents a specific module or project in the
 | **07** | [**Reflection Agent**](./07-reflection-agent) | Self-correcting agents that iterate and critique their output. | Self-Correction |
 | **08** | [**Reflexion Agent**](./08-reflexion-agent) | Advanced Actor-Critic model with tool-assisted self-reflection. | Actor-Critic |
 | **09** | [**Agentic RAG**](./09-agentic-rag) | The pinnacle: CRAG and Self-RAG for self-correcting retrieval. | CRAG, Self-RAG |
+| **50** | [**MCP Search Agent**](./50-mcp-search-agent) | Decoupled search agent using Model Context Protocol (MCP). | MCP, FastMCP, Stdio |
 
 ## 📚 Research Library
 
 This repository links practical implementations to foundational AI research. Each module contains a `docs/` folder with the relevant seminal papers:
 
 *   **Prompting**: [Few-Shot Learning (GPT-3)](./01-hello-world/docs/gpt3_few_shot_paper.pdf), [Chain-of-Thought](./03-agents-under-the-hood/docs/chain_of_thought_paper.pdf).
-*   **Agent Architecture**: [ReAct](./06-react-agent-function-calling/docs/react_paper.pdf), [Toolformer](./02-search-agent/docs/toolformer_paper.pdf), [Reflexion](./08-reflexion-agent/docs/reflexion_paper.pdf).
+*   **Agent Architecture**: [ReAct](./06-react-agent-function-calling/docs/react_paper.pdf), [Toolformer](./02-search-agent/docs/toolformer_paper.pdf), [Reflexion](./08-reflexion-agent/docs/reflexion_paper.pdf), [MCP Agent](./50-mcp-search-agent/docs/toolformer_paper.pdf).
 *   **RAG Evolution**: [Original RAG Paper](./04-rag-gist/docs/original_rag_paper.pdf), [Corrective RAG (CRAG)](./09-agentic-rag/docs/Corrective-RAG_CRAG.pdf), [Self-RAG](./09-agentic-rag/docs/Self-RAG_Self-Reflection.pdf).
 
 ## 🚀 Getting Started
