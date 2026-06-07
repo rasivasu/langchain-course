@@ -7,7 +7,7 @@ from graph.graph import app
 
 def main() -> None:
     print("Hello Advanced REG")
-    print(app.invoke(input={"question": "What is agent memory"}))  # type: ignore
+    print(app.invoke(input={"question": "What is Claude Code"}))  # pyright: ignore[reportArgumentType]
 
 
 if __name__ == "__main__":

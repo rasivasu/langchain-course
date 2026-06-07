@@ -6,9 +6,27 @@ from langgraph.graph import END, StateGraph
 
 from graph.chains.answer_grader import answer_grader
 from graph.chains.hallucination_grader import GradeHallucinations, hallucination_grader
+from graph.chains.router import RouteQuery, question_router
 from graph.consts import GENERATE, GRADE_DOCUMENTS, RETRIEVE, WEB_SEARCH
 from graph.nodes import generate, grade_documents, retrieve, web_search
 from graph.state import GraphState
+
+
+def route_request(state: GraphState) -> str:
+    print("---ROUTE REQUEST---")
+    question = state["question"]
+    source: RouteQuery = question_router.invoke({"question": question})  # pyright: ignore[reportAssignmentType]
+    if source.datasource == "vectorstore":
+        print("---ROUTE REQUEST TO RAG---")
+        return RETRIEVE
+    elif source.datasource == "websearch":
+        print("---ROUTE REQUEST TO WEBSEARCH---")
+        return WEB_SEARCH
+    else:
+        # The control should never reach this point
+        # If the router returns an unexpected value, default to END
+        print("---ROUTE REQUEST TO END---")
+        return END
 
 
 def should_generate_or_search_web(state: GraphState) -> str:
@@ -86,7 +104,10 @@ workflow.add_node(
     WEB_SEARCH, web_search
 )  # Performs a web search using TavilySearch, if the generation is not grounded in the documents
 
-workflow.set_entry_point(RETRIEVE)
+workflow.set_conditional_entry_point(
+    route_request,
+    path_map={RETRIEVE: RETRIEVE, WEB_SEARCH: WEB_SEARCH, END: END},
+)
 workflow.add_edge(RETRIEVE, GRADE_DOCUMENTS)
 workflow.add_conditional_edges(
     GRADE_DOCUMENTS,
@@ -99,7 +120,6 @@ workflow.add_conditional_edges(
     {"not supported": GENERATE, "useful": END, "not useful": WEB_SEARCH},
 )
 workflow.add_edge(WEB_SEARCH, GENERATE)
-workflow.add_edge(GENERATE, END)
 
 app = workflow.compile()
 

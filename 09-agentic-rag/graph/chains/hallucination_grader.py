@@ -26,4 +26,5 @@ hallucination_prompt = ChatPromptTemplate.from_messages(
     ]
 )
 
+# The hallucination_grader chain checks if the generated answer is supported by the context
 hallucination_grader = hallucination_prompt | structured_llm_grader

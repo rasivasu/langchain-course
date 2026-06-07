@@ -25,4 +25,5 @@ answer_prompt = ChatPromptTemplate.from_messages(
     ]
 )
 
+# The answer_grader chain evaluates if the generated answer actually resolves the question
 answer_grader: RunnableSerializable = answer_prompt | structured_llm_grader

@@ -13,9 +13,19 @@ web_search_tool = TavilySearch(max_results=3)
 
 
 def web_search(state: GraphState) -> Dict[str, Any]:
+    """
+    Performs a web search using Tavily to find supplemental information.
+    The results are appended to the existing documents in the state.
+
+    Args:
+        state (GraphState): The current state of the graph.
+
+    Returns:
+        Dict[str, Any]: Updated state with supplemental documents.
+    """
     print("---WEB SEARCH---")
     question = state["question"]
-    documents = state["documents"]
+    documents = state.get("documents", None)
     tavily_results = web_search_tool.invoke({"query": question})
     joined_tavily_result: str = "\n".join(
         [tavily_result["content"] for tavily_result in tavily_results["results"]]

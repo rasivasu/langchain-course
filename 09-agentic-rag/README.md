@@ -1,6 +1,6 @@
 # Agentic RAG with LangGraph
 
-This project implements an **Agentic RAG (Corrective RAG)** workflow using **LangGraph**. It is designed to move beyond simple retrieve-and-generate pipelines by incorporating a grading step that evaluates the relevance of retrieved documents and dynamically supplements the context with a web search if necessary.
+This project implements an **Agentic RAG** workflow using **LangGraph**, combining **Adaptive RAG**, **Corrective RAG (CRAG)**, and **Self-RAG** techniques. It moves beyond simple retrieve-and-generate pipelines by incorporating dynamic routing, document grading, and self-reflection steps to ensure accuracy and reliability.
 
 ## 🌟 Inspiration
 This project is inspired by and based on the following resources:
@@ -14,28 +14,31 @@ The architecture of this project is based on the following key research papers:
 - **Adaptive RAG:** [Adaptive-RAG: Learning to Adapt Retrieval-Augmented LLMs through Question Complexity](https://arxiv.org/abs/2403.14403) - Explains how to route queries based on their complexity to different RAG strategies. (See `docs/Adaptive-RAG_Routing.pdf`)
 
 ## 🏗️ Architecture
-The system is built as a stateful graph using LangGraph. The workflow ensures that only relevant information is used for generation, improving the accuracy and reliability of the final answer.
+The system is built as a stateful graph using LangGraph. It employs a sophisticated multi-stage process to handle queries effectively.
 
 ![Graph Visualization](graph.png)
 
-### Core Nodes:
-1.  **Retrieve:** Fetches documents from a local **ChromaDB** vector store (containing knowledge from Lilian Weng's blog posts).
-2.  **Grade Documents:** A decision node that uses a LLM (GPT-4o-mini) with structured output to assess the relevance of each retrieved document.
-3.  **Web Search:** If any document is found irrelevant, the system triggers a **Tavily Web Search** to find supplemental information.
-4.  **Generate:** Synthesizes the final answer using the filtered and supplemented context.
+### Core Nodes & Chains:
+1.  **Router:** An initial decision point that routes the question to either the local **Vector Store** or a **Web Search** based on the topic.
+2.  **Retrieve:** Fetches documents from a local **ChromaDB** vector store (containing knowledge from Lilian Weng's blog posts).
+3.  **Grade Documents:** Assesses the relevance of retrieved documents. If relevance is low, it triggers a supplemental web search.
+4.  **Web Search:** Uses **Tavily Web Search** to find up-to-date or missing information.
+5.  **Generate:** Synthesizes the final answer using the filtered context.
+6.  **Self-Reflection (Graders):**
+    *   **Hallucination Grader:** Checks if the generation is grounded in the provided documents.
+    *   **Answer Grader:** Checks if the generation actually addresses the user's question.
 
 ### Control Flow:
-- The graph starts at the **Retrieve** node.
-- After retrieval, it moves to **Grade Documents**.
-- A conditional edge determines the next step:
-    - If **all** documents are relevant, it proceeds directly to **Generate**.
-    - If **any** document is irrelevant, it routes to **Web Search** before final generation.
+- **Routing:** The graph starts with a conditional entry point that determines whether to retrieve from local docs or search the web immediately.
+- **Correction:** After retrieval, documents are graded. If any are deemed irrelevant, the system transitions to a web search.
+- **Reflection:** Once an answer is generated, it is validated. If it's not supported by the context or doesn't answer the question, the system may re-generate or perform a broader search.
 
 ## 🚀 Key Features
-- **Corrective RAG (CRAG):** Dynamically corrects the RAG process based on document quality.
-- **Structured Grading:** Uses OpenAI's Structured Outputs to ensure reliable binary relevance scores.
-- **Stateful Orchestration:** Leverages LangGraph to manage complex control flows and state transitions.
-- **Hybrid Knowledge:** Combines local vector search with real-time web search Fallback.
+- **Adaptive Routing:** Intelligently chooses the best data source for the query.
+- **Corrective RAG (CRAG):** Dynamically corrects the retrieval process based on document quality.
+- **Self-Reflection (Self-RAG):** Uses feedback loops to minimize hallucinations and ensure answer utility.
+- **Structured Grading:** Uses OpenAI's Structured Outputs for reliable decision-making.
+- **Stateful Orchestration:** Leverages LangGraph to manage the complex loop-based workflow.
 
 ## 🛠️ Setup & Installation
 
@@ -70,13 +73,13 @@ Run the main application to query the agent:
 python main.py
 ```
 
-By default, it asks: *"What is agent memory?"* and follows the agentic workflow to provide a response.
+By default, it asks: *"What is Claude Code"* and follows the agentic workflow to provide a response.
 
 ## 📂 Project Structure
 ```text
 ├── docs/            # Foundational research papers (CRAG, Self-RAG, Adaptive RAG)
 ├── graph/
-│   ├── chains/      # LLM chains for grading and generation
+│   ├── chains/      # LLM chains for routing, grading, and generation
 │   ├── nodes/       # Graph node implementations (retrieve, grade, search, generate)
 │   ├── graph.py     # Graph definition and orchestration
 │   ├── state.py     # TypedDict for graph state
