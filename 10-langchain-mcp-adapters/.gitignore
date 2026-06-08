@@ -1,9 +1,14 @@
+# Git ignore configuration for LangChain MCP Adapters project
+# This file prevents committing sensitive data, build artifacts, and development files
+
 # Environment variables
+# DO NOT COMMIT .env files - they contain sensitive API keys and credentials
 .env
 .env.local
 .env.*.local
 
 # Python
+# Compiled Python files and bytecode caches
 __pycache__/
 *.py[cod]
 *$py.class
@@ -29,12 +34,14 @@ share/python-wheels/
 MANIFEST
 
 # Virtual environments
+# Don't commit virtual environment directories - they're large and system-specific
 venv/
 ENV/
 env/
 .venv/
 
 # IDEs
+# Ignore editor and IDE configuration files
 .vscode/
 .idea/
 *.swp
@@ -43,15 +50,18 @@ env/
 .DS_Store
 
 # Testing
+# Don't commit test artifacts and coverage reports
 .pytest_cache/
 .tox/
 .coverage
 htmlcov/
 
 # LangChain/LangSmith
+# Ignore local caches created by LangChain and LangSmith
 .langchain/
 .langsmith/
 
 # Project-specific
+# Don't commit log files or temporary cache directories
 *.log
 .cache/
